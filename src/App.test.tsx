@@ -1,19 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { shallow } from "enzyme";
 import App from "./App";
-import { Main } from "./components/Main";
 import "./setupTests";
 
-test("Verify render elements", () => {
-  render(<App />);
-  const searchButton = screen.getByText("SEARCH");
-  const inputAddressName = screen.getByLabelText("Name");
-  expect(searchButton).toBeInTheDocument();
-  expect(inputAddressName).toBeInTheDocument();
-});
-
-test("Verify render elements App", () => {
-  const wrapper = shallow(<App />);
-  expect(wrapper.containsMatchingElement(<Main />)).toBeTruthy();
+describe("Test App Component", () => {
+  it("Verify render", () => {
+    render(<App />);
+    const searchButton = screen.getByText("SEARCH");
+    const inputAddressName = screen.getByLabelText("Name");
+    expect(searchButton).toBeInTheDocument();
+    expect(inputAddressName).toBeInTheDocument();
+  });
 });
