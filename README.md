@@ -11,7 +11,7 @@
 
 first of all install the dependencies.
 
-Execute following command:
+Execute the following command:
 
 ```
 yarn build
@@ -21,7 +21,7 @@ npm run build
 
 Then, execute following command to run the application.
 
-Execute following code:
+Execute the following code:
 
 ```
 yarn start
@@ -29,7 +29,7 @@ or
 npm run start
 ```
 
-After that, you can access main page of challenge on http://localhost:3000.
+After that, you can access the main page of the challenge on http://localhost:3000.
 
 ### How to test
 
@@ -43,7 +43,7 @@ npm run test
 
 - First of all, type the name of some place.
 - Then, click in SEARCH button.
-- Finnaly, click in some place of map to calculate a distance.
+- Finnaly, click in some place of the map to calculate a distance.
 
 ### Libs
 
@@ -60,4 +60,4 @@ npm run test
 
 ### Notes
 
-I shared my google credentials to facilitate the work of my jurors.
+I shared my google credentials to facilitate the work of the jury.
