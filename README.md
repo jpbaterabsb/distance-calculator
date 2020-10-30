@@ -60,4 +60,4 @@ npm run test
 
 ### Notes
 
-I shared my google credentials to facilitate the work of the jury.
+I shared my google credentials to make the jury’s work easy.
