@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Map,
   Marker,
@@ -10,6 +10,7 @@ import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 import { State } from "../../stores";
 import { searchAddressNameByLatLng } from "../../stores/actions/AddressActions";
 import { Address } from "../../stores/reducers/AddressReducer";
+import { LatLng } from "../../services/geocode";
 
 type MapContainerProps = {
   google: any;
@@ -30,12 +31,33 @@ interface DispatchToProps {
 const MapContainer: React.FC<
   MapContainerProps & StateToProps & DispatchToProps
 > = ({ google, searchAddressNameByLatLng, searchAddress, clickAddress }) => {
+  const [center, setCenter] = useState<LatLng>({ lat: 0, lng: 0 });
+  const [initialCenter, setInitialCenter] = useState<LatLng>({
+    lat: 0,
+    lng: 0,
+  });
   function handleClickPosition(_mapProps: any, _map: any, coord: any) {
     const { latLng } = coord;
     const lat = latLng.lat();
     const lng = latLng.lng();
     searchAddressNameByLatLng({ lat, lng });
   }
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude: lat, longitude: lng } = position.coords;
+      setInitialCenter({
+        lat,
+        lng,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (searchAddress?.latlng) {
+      setCenter(searchAddress.latlng);
+    }
+  }, [searchAddress]);
 
   return (
     <Map
@@ -53,7 +75,8 @@ const MapContainer: React.FC<
       key="map"
       google={google}
       zoom={14}
-      initialCenter={{ lat: -15.646719999999998, lng: -47.762636799999996 }}
+      center={center}
+      initialCenter={initialCenter}
       onClick={handleClickPosition}
     >
       {searchAddress && clickAddress && (

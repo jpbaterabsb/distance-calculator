@@ -88,13 +88,13 @@ export const MainComponent: React.FC<StateToProps & DispatchToProps> = ({
         </div>
         <div className="card-item">
           <span className="main-text">
-            <span className="property">To:</span>
-            {` ${clickAddress.name ? clickAddress.name : "---"} `}
+            <span className="property">From:</span>
+            {` ${searchAddress.name ? searchAddress.name : "---"} `}
           </span>
         </div>
         <div className="card-item">
           <span className="main-text">
-            <span className="property">From:</span>
+            <span className="property">To:</span>
             {` ${clickAddress.name ? clickAddress.name : "---"} `}
           </span>
         </div>
