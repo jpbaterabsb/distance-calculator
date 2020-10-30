@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { MainComponent, Main } from "./index";
+import { Main } from "./index";
 
 import "../../setupTests";
 import configureStore, { MockStore } from "redux-mock-store";
@@ -8,7 +8,6 @@ import thunk from "redux-thunk";
 import { initialState } from "../../stores/reducers/AddressReducer";
 import * as geocode from "../../services/geocode";
 import { Provider } from "react-redux";
-import { shallow } from "enzyme";
 jest.mock("../../services/geocode");
 const mockedApi = geocode as jest.Mocked<typeof geocode>;
 const mockStore = configureStore([thunk]);

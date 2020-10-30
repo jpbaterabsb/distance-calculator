@@ -42,9 +42,8 @@ npm run test
 ### How to use
 
 - First of all, type the name of some place.
-- Second of all, click in SEARCH button.
-- Then, click in some place of map to calculate a distance.
-- Finnaly, click in Calculate button.
+- Then, click in SEARCH button.
+- Finnaly, click in some place of map to calculate a distance.
 
 ### Libs
 
