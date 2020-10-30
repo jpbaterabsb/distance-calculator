@@ -32,26 +32,13 @@ const MapContainer: React.FC<
   MapContainerProps & StateToProps & DispatchToProps
 > = ({ google, searchAddressNameByLatLng, searchAddress, clickAddress }) => {
   const [center, setCenter] = useState<LatLng>({ lat: 0, lng: 0 });
-  const [initialCenter, setInitialCenter] = useState<LatLng>({
-    lat: 0,
-    lng: 0,
-  });
+
   function handleClickPosition(_mapProps: any, _map: any, coord: any) {
     const { latLng } = coord;
     const lat = latLng.lat();
     const lng = latLng.lng();
     searchAddressNameByLatLng({ lat, lng });
   }
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude: lat, longitude: lng } = position.coords;
-      setInitialCenter({
-        lat,
-        lng,
-      });
-    });
-  }, []);
 
   useEffect(() => {
     if (searchAddress?.latlng) {
@@ -76,7 +63,6 @@ const MapContainer: React.FC<
       google={google}
       zoom={14}
       center={center}
-      initialCenter={initialCenter}
       onClick={handleClickPosition}
     >
       {searchAddress && clickAddress && (

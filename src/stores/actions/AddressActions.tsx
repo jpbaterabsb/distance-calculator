@@ -80,6 +80,12 @@ export const searchAddressNameByLatLng = (latlng: LatLng) => (
         })
       );
     })
-    .catch((ex: Error) => dispatch(setError(ex.message)))
+    .catch((ex: Error) => {
+      if (ex.message.includes("formatted_address")) {
+        dispatch(setError("Ops! Geolocation not found "));
+      } else {
+        dispatch(setError(ex.message));
+      }
+    })
     .finally(() => dispatch(setLoading(false)));
 };
