@@ -1,4 +1,4 @@
-# Ruby Backend Challenge
+# Prospectiva Group Challenge
 
 ###### Joao Paulo Oliveria Santos (@jpbaterabsb) - https://www.linkedin.com/in/desenvolvedorjoaopaulo/
 
@@ -49,12 +49,12 @@ npm run test
 ### Libs
 
 - React - Library to create web applications with a pure javascript.
-  Typescript - javascript superset to improve code quality,
+- Typescript - javascript superset to improve code quality,
 - Jest - javascript testing framework focused in become easy test implementations.
 - Redux - Library with focus in manage application states.
-  React Google Maps - Simple way to use google maps API using React Library.
+- React Google Maps - Simple way to use google maps API using React Library.
 - Axios - this framework focused on facilitating to fetch data from web services.
-- styled-component - With this framework developers can create
+- styled-components - With this framework developers can create
 - React Components with CSS syntax;
 - React Toastfy - Easy way to create Toasts in react.
 - React Loader Spinner - provides simple React SVG spinner component which can be implemented for async await operation before data loads to the view.
