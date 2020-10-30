@@ -6,7 +6,6 @@ import {
   Polyline,
   IGoogleApiOptions,
 } from "google-maps-react";
-import { Container } from "./styles";
 import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 import { State } from "../../stores";
 import { searchAddressNameByLatLng } from "../../stores/actions/AddressActions";
@@ -39,61 +38,70 @@ const MapContainer: React.FC<
   }
 
   return (
-    <Container>
-      <Map
-        key="map"
-        google={google}
-        zoom={14}
-        initialCenter={{ lat: -15.646719999999998, lng: -47.762636799999996 }}
-        onClick={handleClickPosition}
-      >
-        {searchAddress && clickAddress && (
-          <Polyline
-            path={[
-              {
-                lat: searchAddress.latlng.lat,
-                lng: searchAddress.latlng.lng,
-              },
-              {
-                lat: clickAddress.latlng.lat,
-                lng: clickAddress.latlng.lng,
-              },
-            ]}
-            options={{
-              strokeColor: "red",
-              strokeOpacity: 1,
-              strokeWeight: 5,
-              icons: [
-                {
-                  icon: "hello",
-                  offset: "0",
-                  repeat: "10px",
-                },
-              ],
-            }}
-          />
-        )}
-
-        {searchAddress && (
-          <Marker
-            position={{
+    <Map
+      containerStyle={{
+        position: "relative",
+        width: 800,
+        height: 560,
+        // marginRight: 50,
+      }}
+      style={{
+        borderRadius: 10,
+        padding: 0,
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
+      }}
+      key="map"
+      google={google}
+      zoom={14}
+      initialCenter={{ lat: -15.646719999999998, lng: -47.762636799999996 }}
+      onClick={handleClickPosition}
+    >
+      {searchAddress && clickAddress && (
+        <Polyline
+          path={[
+            {
               lat: searchAddress.latlng.lat,
               lng: searchAddress.latlng.lng,
-            }}
-            title={searchAddress.name}
-          />
-        )}
-        {clickAddress && (
-          <Marker
-            position={{
+            },
+            {
               lat: clickAddress.latlng.lat,
               lng: clickAddress.latlng.lng,
-            }}
-            title={clickAddress.name}
-          />
-        )}
-      </Map>
-    </Container>
+            },
+          ]}
+          options={{
+            strokeColor: "red",
+            strokeOpacity: 1,
+            strokeWeight: 5,
+            icons: [
+              {
+                icon: "hello",
+                offset: "0",
+                repeat: "10px",
+              },
+            ],
+          }}
+        />
+      )}
+
+      {searchAddress && (
+        <Marker
+          position={{
+            lat: searchAddress.latlng.lat,
+            lng: searchAddress.latlng.lng,
+          }}
+          title={searchAddress.name}
+        />
+      )}
+      {clickAddress && (
+        <Marker
+          position={{
+            lat: clickAddress.latlng.lat,
+            lng: clickAddress.latlng.lng,
+          }}
+          title={clickAddress.name}
+        />
+      )}
+    </Map>
   );
 };
 

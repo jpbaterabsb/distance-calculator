@@ -1,50 +1,12 @@
 import Loader from "react-loader-spinner";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const BigContainer = styled.div`
   display: flex;
-  height: 100%;
   flex: 1;
-  flex-direction: column;
-
-  .row {
-    padding: 18px 12px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    max-width: 100%;
-
-    input {
-      width: 384px;
-    }
-
-    @media screen and (max-width: 640px) {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      input {
-        width: 248px;
-      }
-    }
-  }
-
-  .buttons {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .main-text {
-    color: #000;
-    font: 32px "Roboto", sans-serif;
-    font-weight: bold;
-    line-height: 32px;
-    text-align: center;
-
-    @media screen and (max-width: 640px) {
-      font: 22px "Roboto", sans-serif;
-      font-weight: bold;
-    }
-  }
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const ThreeDotsLoader = styled(Loader).attrs({
@@ -58,4 +20,30 @@ export const ThreeDotsLoader = styled(Loader).attrs({
   flex: 1;
   justify-content: center;
   align-items: center;
+`;
+
+export const Card = styled.div`
+  flex-direction: column;
+  padding: 20px;
+  width: 400px;
+  height: 560px;
+  background: #fbfbfb;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+
+  .card-item {
+    margin: 12px 0px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .main-text {
+    font-size: 18px;
+  }
+
+  .property {
+    font-weight: bold;
+  }
 `;

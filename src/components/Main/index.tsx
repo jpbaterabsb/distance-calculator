@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Input } from "../Input";
-import { Button, theme } from "../Button";
+import React, { useState, useEffect } from "react";
 import {
   calculateDistance,
   setError,
   setLoading,
   searchGeocodeByAddressName,
 } from "../../stores/actions/AddressActions";
-import { Container, ThreeDotsLoader } from "./styles";
+import { BigContainer, Card, ThreeDotsLoader } from "./styles";
 import { GoogleMap } from "../MapContainer";
 import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 import { State } from "../../stores";
 import { toast } from "react-toastify";
 import { Address } from "../../stores/reducers/AddressReducer";
+import { Input } from "../Input";
+import { theme, Button } from "../Button";
 
 interface StateToProps {
   distance: string;
@@ -46,15 +46,17 @@ export const MainComponent: React.FC<StateToProps & DispatchToProps> = ({
     searchGeocodeByAddressName(name);
   }
 
-  function calculate() {
-    calculateDistance(searchAddress.latlng, clickAddress?.latlng);
-  }
+  useEffect(() => {
+    if (searchAddress.latlng.lat !== 0 && clickAddress.latlng.lat !== 0) {
+      calculateDistance(searchAddress.latlng, clickAddress?.latlng);
+    }
+  }, [searchAddress, clickAddress, calculateDistance]);
 
   if (loading) {
     return (
-      <Container>
+      <BigContainer>
         <ThreeDotsLoader />
-      </Container>
+      </BigContainer>
     );
   }
 
@@ -64,49 +66,47 @@ export const MainComponent: React.FC<StateToProps & DispatchToProps> = ({
   }
 
   return (
-    <Container>
-      <div className="row">
-        <Input
-          label="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <div className="buttons">
+    <BigContainer>
+      <Card>
+        <div className="card-item">
+          <span className="title">Distance Calculator</span>
+        </div>
+        <div className="card-item">
+          <Input
+            label="Name"
+            value={name}
+            width="311"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="card-item">
           <Button
             theme={theme.primary}
             value="SEARCH"
             onClick={() => handleClickSearch()}
           />
-          <Button
-            theme={theme.green}
-            style={{
-              marginLeft: 16,
-            }}
-            onClick={() => calculate()}
-            value="CALCULATE"
-          />
         </div>
-      </div>
-      {distance && (
-        <>
-          <div className="row">
-            <span title="main-text" className="main-text">{`From: ${
-              searchAddress.name ? searchAddress.name : "---"
-            }`}</span>
-          </div>
-          <div className="row">
-            <span className="main-text">{`To:${
-              clickAddress.name ? clickAddress.name : "---"
-            } `}</span>
-          </div>
-          <div className="row">
-            <span className="main-text">{`Average Distance
-        KM: ${distance}`}</span>
-          </div>
-        </>
-      )}
+        <div className="card-item">
+          <span className="main-text">
+            <span className="property">To:</span>
+            {` ${clickAddress.name ? clickAddress.name : "---"} `}
+          </span>
+        </div>
+        <div className="card-item">
+          <span className="main-text">
+            <span className="property">From:</span>
+            {` ${clickAddress.name ? clickAddress.name : "---"} `}
+          </span>
+        </div>
+        <div className="card-item">
+          <span className="main-text">
+            <span className="property">Average Distance:</span>
+            {` ${distance} Km`}
+          </span>
+        </div>
+      </Card>
       <GoogleMap />
-    </Container>
+    </BigContainer>
   );
 };
 

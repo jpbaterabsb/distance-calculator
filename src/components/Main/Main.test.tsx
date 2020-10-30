@@ -54,30 +54,11 @@ describe("Test Main Component", () => {
     fireEvent.click(searchButton);
 
     setTimeout(() => {
-      console.log(store.getActions());
       const result = store
         .getActions()
         .find((a) => a.type === "address/searcAddress/set");
       expect(result).not.toBeUndefined();
       done();
     }, 50);
-  });
-
-  it("when distance != null, component should render span[title='main-text']", () => {
-    const wrapper = shallow(
-      <MainComponent
-        distance="23.0"
-        error=""
-        searchGeocodeByAddressName={() => {}}
-        setError={() => {}}
-        setLoading={() => {}}
-        clickAddress={{ name: "California", latlng: { lat: 1, lng: 1 } }}
-        searchAddress={{ name: "San Franciso", latlng: { lat: 1, lng: 1 } }}
-        loading={false}
-        calculateDistance={() => {}}
-      />
-    );
-
-    expect(wrapper.find("span[title='main-text']").length).toBe(1);
   });
 });

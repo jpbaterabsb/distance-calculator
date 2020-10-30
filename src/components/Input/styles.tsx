@@ -4,6 +4,7 @@ export const Container = styled.div`
   .input-container {
     position: relative;
     input {
+      background: transparent;
       border: 0;
       border-bottom: 2px solid #9e9e9e;
       outline: none;
